@@ -2,26 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html{
+    margin: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.guest-confirmation, .weddinggift{
+    scrollbar-width: thin;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.swiper-button-prev::after, .swiper-button-next::after{
+    font-size: 24px!important;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.404);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    opacity: 70%;
+    border-radius: 50%;
 }
