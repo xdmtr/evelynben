@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import OnePage from "@/components/OnePage";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { motion, useAnimation } from "framer-motion";
@@ -8,7 +8,8 @@ import { useInView } from "react-intersection-observer";
 import React from "react";
 
 const WeddingDate: React.FC = () => {
-  const targetDate = new Date("2024-11-02T11:30:00Z");
+  // Use useMemo to avoid creating a new Date object on every render
+  const targetDate = useMemo(() => new Date("2024-11-02T11:30:00Z"), []);
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,

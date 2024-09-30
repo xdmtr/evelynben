@@ -3,9 +3,39 @@
 import React, { useState, useEffect } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
+// Declare the YT namespace and the Window interface
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: () => void;
+    YT: typeof YT; // Use typeof YT to prevent type conflicts
+  }
+
+  // Define the YT namespace with its properties
+  namespace YT {
+    interface PlayerOptions {
+      videoId: string;
+      playerVars?: {
+        autoplay?: number;
+        loop?: number;
+        playlist?: string;
+        controls?: number;
+        showinfo?: number;
+        modestbranding?: number;
+      };
+      events?: {
+        onReady?: (event: PlayerEvent) => void;
+      };
+    }
+
+    interface PlayerEvent {
+      target: Player;
+    }
+  }
+}
+
 const Music: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false); // Initially not muted
-  const [player, setPlayer] = useState<any>(null);
+  const [player, setPlayer] = useState<YT.Player | null>(null);
 
   useEffect(() => {
     // Create YouTube script
@@ -15,11 +45,11 @@ const Music: React.FC = () => {
     firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
 
     // Define the YouTube player when API is ready
-    (window as any).onYouTubeIframeAPIReady = () => {
-      const newPlayer = new (window as any).YT.Player("music-player", {
+    window.onYouTubeIframeAPIReady = () => {
+      const newPlayer = new window.YT.Player("music-player", {
         videoId: "cpYYX3ONPGc", // YouTube video ID
         events: {
-          onReady: (event: any) => {
+          onReady: (event: YT.PlayerEvent) => {
             event.target.setVolume(50); // Set initial volume
             event.target.playVideo(); // Try to autoplay with sound
           },
