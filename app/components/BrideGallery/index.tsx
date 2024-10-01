@@ -93,7 +93,7 @@ const BrideGallery: React.FC = () => {
               className="w-full max-h-[450px] object-contain"
             />
           </div>
-          <div className="text-white text-center font-Italianno text-3xl smol:text-[32px] tracking-wide">
+          <div className="text-white text-center font-Italianno text-[27px] smol:text-[29px] tracking-wide">
             <p>
               It has been six long years. <br />
               Look how far we’ve come. <br />
@@ -131,7 +131,7 @@ const BrideGallery: React.FC = () => {
                   alt="background carousel"
                   width={160}
                   height={109}
-                  className="max-h-[109px] object-cover object-center md:object-[center_30%] border-2 border-white rounded-lg cursor-pointer"
+                  className="max-h-[109px] object-cover object-center md:object-[center_30%] border-2 border-white rounded-lg cursor-pointer z-40"
                   onClick={() =>
                     handleImageClick(typeof item === "string" ? item : item.src)
                   }
@@ -142,7 +142,6 @@ const BrideGallery: React.FC = () => {
         </motion.div>
       </OnePage>
 
-      {/* Modal with better scroll behavior */}
       {isModalOpen && selectedImage && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 overflow-auto touch-pan-y">
           <div className="relative">

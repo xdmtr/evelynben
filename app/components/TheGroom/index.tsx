@@ -81,9 +81,8 @@ const TheGroom: React.FC = () => {
               <h1 className="ml-5">Groom</h1>
             </motion.div>
 
-            {/* Animate only the groom's name */}
             <motion.div
-              className="h-full flex flex-col justify-end self-end text-right"
+              className="h-full flex flex-col justify-end self-end text-right mr-2"
               ref={ref}
               initial="hidden"
               animate={controls}

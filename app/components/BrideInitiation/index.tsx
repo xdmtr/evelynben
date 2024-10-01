@@ -43,7 +43,7 @@ const BrideInitiation: React.FC = () => {
               className="h-screen w-screen object-cover object-[calc(50%+30px)] sm:object-center"
             />
           </div>
-          <div className="z-20 top-0 absolute flex flex-col justify-end items-center text-center w-full h-[85%] text-white gap-2">
+          <div className="z-20 top-0 absolute flex flex-col justify-end items-center text-center w-full h-[73%] text-white gap-2">
             <h1 className="text-lg font-bodoni">The wait is finally over!</h1>
             <div className="flex items-center gap-2 font-Italianno text-xl font-light">
               <p>from 2018</p>
