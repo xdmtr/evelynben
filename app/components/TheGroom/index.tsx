@@ -55,14 +55,8 @@ const TheGroom: React.FC = () => {
   return (
     <>
       <OnePage id="the-groom">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={controls}
-          variants={slideUpVariants}
-          className="flex relative w-full min-h-screen justify-center"
-        >
-          <div className="bg-babypink-gradient-tu !bg-opacity-35  h-[30vh] w-full max-w-[540px] absolute z-10"></div>
+        <div className="flex relative w-full min-h-screen justify-center">
+          <div className="bg-babypink-gradient-tu !bg-opacity-35 h-[30vh] w-full max-w-[540px] absolute z-10"></div>
           <div className="bg-darkBrowny h-screen w-full max-w-[540px] absolute z-10 mix-blend-overlay"></div>
           <div className="z-0 h-screen w-screen flex flex-col items-center text-center">
             <Image
@@ -72,14 +66,29 @@ const TheGroom: React.FC = () => {
             />
           </div>
           <div className="absolute top-0 z-20 flex flex-col justify-between w-full max-w-[540px] h-full p-5 pt-10 text-white">
-            <div className="text-center h-full font-bodoni text-xs flex flex-col gap-5 items-center ">
-              <h2 className="font-caramel text-[100px]">- & -</h2>
+            <div className="text-center h-full font-bodoni text-xs flex flex-col gap-5 items-center  ">
+              <h2 className="font-caramel text-[100px] pt-10">- & -</h2>
             </div>
-            <div className="h-full flex flex-col font-cinzel text-4xl">
-              <h1 className="">The</h1>
+
+            <motion.div
+              className="h-full flex flex-col font-cinzel text-4xl"
+              ref={ref}
+              initial="hidden"
+              animate={controls}
+              variants={slideUpVariants}
+            >
+              <h1>The</h1>
               <h1 className="ml-5">Groom</h1>
-            </div>
-            <div className="h-full flex flex-col justify-end self-end text-right">
+            </motion.div>
+
+            {/* Animate only the groom's name */}
+            <motion.div
+              className="h-full flex flex-col justify-end self-end text-right"
+              ref={ref}
+              initial="hidden"
+              animate={controls}
+              variants={slideUpVariants}
+            >
               <h2 className="font-caramel text-[55px] leading-[0.9]">Benhard</h2>
               <p className="font-playfair text-lg font-bold">
                 Benhard Sampeupa, S.Ak
@@ -88,10 +97,10 @@ const TheGroom: React.FC = () => {
                 Anak ke-3 dari Bapak Elberthard Sesa
               </p>
               <p className="font-playfair text-xs">& Ibu Elis Kalang Simbong</p>
-            </div>
+            </motion.div>
           </div>
-          <div className="bg-brown-gradient !bg-opacity-35  h-[20vh] w-full max-w-[540px] absolute z-10 bottom-0 mix-blend-overlay"></div>
-        </motion.div>
+          <div className="bg-brown-gradient !bg-opacity-35 h-[20vh] w-full max-w-[540px] absolute z-10 bottom-0 mix-blend-overlay"></div>
+        </div>
       </OnePage>
     </>
   );

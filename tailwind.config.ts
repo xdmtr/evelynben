@@ -31,6 +31,8 @@ const config: Config = {
       },
       backgroundImage: {
         'brown-gradient': 'linear-gradient(to bottom,  rgba(137, 122, 116, 0), rgba(137, 122, 116, 0.8), rgba(137, 122, 116, 1))',
+        'brown-gradient-gallery': 'linear-gradient(to bottom, rgba(137, 122, 116, 0), rgba(186,161,146, 0.0), rgba(186,161,146, 0), rgba(144,115,99, 0.8), #907363)',
+        
         'bg-brown-gradient': 'linear-gradient(to bottom, rgba(142, 128, 119, 0.9), rgba(166, 154, 146, 0.9))',
         'brown-gradient-tu': 'linear-gradient(to top,  rgba(137, 122, 116, 0), rgba(137, 122, 116, 0.8), rgba(137, 122, 116, 1))',
         'brown-gradient-tr': 'linear-gradient(to right, rgba(132, 118, 107, 0.5), rgba(142, 128, 119, 0.5), rgba(149, 134, 125, 0.5), rgba(151, 136, 128, 0.5), rgba(166, 154, 146, 0.5))',
@@ -41,7 +43,7 @@ const config: Config = {
         'pink-to-babypink': 'linear-gradient(to bottom, #C97D83, #D38783)',
         'polaadat': ' linear-gradient(to bottom,  rgba(137, 122, 116, 0), rgba(137, 122, 116, 0.8), rgba(137, 122, 116, 1), rgba(137, 122, 116, 1)),url(/patangkerapapola.webp)',
         'polaadat-tu': ' linear-gradient(to top,  rgba(137, 122, 116, 0), rgba(186,161,146, 0.0), rgba(186,161,146, 0), rgba(186,161,146, 0.9), #BAA191), linear-gradient(to bottom,  rgba(137, 122, 116, 0), rgba(137, 122, 116, 0), rgba(137, 122, 116, 0.9), rgba(137, 122, 116, 1)),url(/patangkerapapola.webp)',
-        'polaadatpink-tu': 'linear-gradient(to top, rgba(229, 143, 172, 0), rgba(229, 143, 172, 0),rgba(198, 98, 116, 0.9), rgba(198, 98, 116, 1)), linear-gradient(to bottom,  rgba(137, 122, 116, 0), rgba(186,161,146, 0.0), rgba(186,161,146, 0), rgba(144,115,99, 0.8), #907363), url(/patangkerapapola.webp)',
+        'polaadatpink-tu': 'linear-gradient(to top, rgba(137, 122, 116, 0), rgba(186,161,146, 0.0), rgba(186,161,146, 0), rgba(144,115,99, 0.8), #907363), linear-gradient(to bottom,  rgba(137, 122, 116, 0), rgba(186,161,146, 0.0), rgba(186,161,146, 0), rgba(144,115,99, 0.8), #907363), url(/patangkerapapola.webp)',
       },
     },
   },

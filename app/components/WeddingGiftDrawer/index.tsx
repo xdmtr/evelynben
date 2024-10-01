@@ -26,13 +26,13 @@ const WeddingGiftDrawer: React.FC<WeddingGiftDrawerProps> = ({ isOpen, onClose }
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-end justify-center"
+      className="fixed inset-0 z-50 flex items-end justify-center overflow-y-auto touch-pan-y" // Ensure scrollability on mobile
       initial="hidden"
       animate={isOpen ? "visible" : "hidden"}
       exit="exit"
       variants={drawerVariants}
     >
-      <div className="w-full max-w-md h-full p-5 bg-black bg-opacity-50 relative">
+      <div className="w-full max-w-md h-full p-5 bg-black bg-opacity-80 relative overflow-auto">
         <button
           className="text-xl z-20 absolute top-5 right-5 p-2 border border-white rounded-full"
           onClick={onClose}

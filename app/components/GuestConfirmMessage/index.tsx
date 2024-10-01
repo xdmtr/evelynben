@@ -19,12 +19,11 @@ const GuestConfirmationMessage: React.FC = () => {
   const searchParams = useSearchParams();
   const initialGuestName = searchParams.get("to") || "";
 
-  // Use the initialGuestName to set the guest name; allow editing if it is empty.
   const [guestName, setGuestName] = useState(initialGuestName);
   const [guestMessage, setGuestMessage] = useState("");
   const [confirmation, setConfirmation] = useState("");
-  const [shouldRefetch, setShouldRefetch] = useState(false); // Tracks refetch after submission
-  const [hasSubmittedOnce, setHasSubmittedOnce] = useState(false); // Tracks if first submission has been made
+  const [shouldRefetch, setShouldRefetch] = useState(false);
+  const [hasSubmittedOnce, setHasSubmittedOnce] = useState(false); 
 
   const [postErrorMessage, setPostErrorMessage] = useState<string | null>(null);
   const [postSuccessMessage, setPostSuccessMessage] = useState<string | null>(

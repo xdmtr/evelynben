@@ -8,7 +8,6 @@ import { useInView } from "react-intersection-observer";
 import React from "react";
 
 const WeddingDate: React.FC = () => {
-  // Use useMemo to avoid creating a new Date object on every render
   const targetDate = useMemo(() => new Date("2024-11-02T11:30:00Z"), []);
 
   const [timeLeft, setTimeLeft] = useState({
@@ -41,7 +40,6 @@ const WeddingDate: React.FC = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(null);
 
-  // Track scroll direction
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -59,17 +57,14 @@ const WeddingDate: React.FC = () => {
     };
   }, [lastScrollY]);
 
-  // Framer Motion animation control
   const controls = useAnimation();
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: false,
   });
 
-  // Trigger the animation when the user scrolls down and the component comes into view
   useEffect(() => {
     if (inView && scrollDirection === "down") {
-      // Reset the animation every time the user scrolls down and the component enters view
       controls.start("visible");
     }
   }, [controls, inView, scrollDirection]);
@@ -105,7 +100,7 @@ const WeddingDate: React.FC = () => {
             <h1 className="font-caramel text-[90px] leading-[0.9]">
               Evelyn <br /> & <br /> Benhard
             </h1>
-            <div className="flex items-center justify-center gap-5 font-cinzel">
+            <div className="mt-5 flex items-center justify-around w-full font-cinzel">
               <div className="bg-[#666666] font-bold bg-opacity-40 p-2 px-5 rounded-xl">
                 <p className="text-xl">{timeLeft.days}</p>
                 <p className="text-[8px]">Days</p>

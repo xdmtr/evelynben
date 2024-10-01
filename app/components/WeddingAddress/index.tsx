@@ -51,6 +51,17 @@ const WeddingAddress: React.FC = () => {
     }
   }, [controls, inView, scrollDirection]);
 
+  // Animation variants for fade zoom-in
+  const fadeZoomInVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1.3, ease: "easeOut" },
+    },
+  };
+
+  // Slide up animation variant
   const slideUpVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -86,7 +97,7 @@ const WeddingAddress: React.FC = () => {
                   <h3 className="font-bold text-sm">
                     Grand Galaxy Convention Hall
                   </h3>
-                  <p className="text-xs font-extrabold">
+                  <p className="text-xs">
                     Jl. Boulevard Raya No. 1, Jaka Setia, <br />
                     Kec. Bekasi Selatan, Kota Bekasi <br />
                     Grand Galaxy Park Mall - Lt.2
@@ -100,16 +111,30 @@ const WeddingAddress: React.FC = () => {
                 </Link>
               </div>
             </div>
+
             <div className="w-full max-w-[540px] p-5 flex flex-col items-center justify-around gap-5 flex-grow">
-              <div className="flex flex-col items-center justify-center text-center gap-3 font-questrial text-sm w-full py-5">
+              {/* Fade zoom in for Bible verse */}
+              <motion.div
+                className="flex flex-col items-center justify-center text-center gap-3 font-questrial text-sm w-full py-5"
+                initial="hidden"
+                animate={controls}
+                variants={fadeZoomInVariants}
+              >
                 <p>
                   Demikianlah mereka bukan lagi dua, melainkan satu. <br />
                   Karena itu, apa yang telah dipersatukan Allah, <br />
                   tidak boleh diceraikan manusia.
                 </p>
                 <h3>( Matius 19:6 )</h3>
-              </div>
-              <div className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins">
+              </motion.div>
+
+              {/* Slide up for Live Streaming */}
+              <motion.div
+                className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
+                initial="hidden"
+                animate={controls}
+                variants={slideUpVariants}
+              >
                 <h2 className="font-caramel text-[46px] leading-none">
                   Live Streaming
                 </h2>
@@ -124,8 +149,15 @@ const WeddingAddress: React.FC = () => {
                   <FaYoutube className="text-red-500 text-lg" />
                   Youtube
                 </Link>
-              </div>
-              <div className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins">
+              </motion.div>
+
+              {/* Slide up for Wedding Gift */}
+              <motion.div
+                className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
+                initial="hidden"
+                animate={controls}
+                variants={slideUpVariants}
+              >
                 <h2 className="font-caramel text-[46px] leading-none">
                   Wedding Gift
                 </h2>
@@ -144,13 +176,12 @@ const WeddingAddress: React.FC = () => {
                 <p className="font-poppins text-[10px]">
                   Thank You For Your Gift
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>
       </OnePage>
 
-      {/* WeddingGiftDrawer */}
       {isDrawerOpen && (
         <WeddingGiftDrawer isOpen={isDrawerOpen} onClose={toggleDrawer} />
       )}

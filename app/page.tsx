@@ -14,7 +14,6 @@ import BackgroundCarousel from "@/components/BackgroundCarousel";
 import PinkToBabyPink from "@/components/Separator/PinkToBabyPink";
 import ImageSeparator from "@/components/Separator/ImageSeparator";
 import ImageSeparatorBrown from "@/components/Separator/ImageSeparatorBrown";
-import Music from "@/components/Music";
 import Image from "next/image";
 
 export default function Home() {
@@ -34,6 +33,7 @@ export default function Home() {
             <p className="font-cinzel text-xl">Loading Invitation...</p> 
           </div>
         }>
+          <div className="w-screen h-screen bg-browny z-0 absolute top-0"></div>
           <GuestInvitation />
         </Suspense>
         <BrideInitiation />
@@ -43,23 +43,19 @@ export default function Home() {
           <ImageSeparator />
         </div>
         <TheBride />
-        <div className="w-full flex flex-col items-center m-0">
+        {/* <div className="w-full flex flex-col items-center m-0">
           <PinkToBabyPink />
-        </div>
+        </div> */}
         <TheGroom />
         <div className="w-full flex flex-col items-center m-0">
           <ImageSeparatorBrown />
         </div>
-
         <LoveStory />
         <PemberkatanAddress />
         <WeddingAddress />
-
         <Suspense fallback={<div>Loading Confirmation...</div>}>
           <GuestConfirmationMessage />
         </Suspense>
-
-        <Music />
       </div>
     </>
   );

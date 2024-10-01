@@ -95,7 +95,7 @@ const PemberkatanAddress: React.FC = () => {
           <Image
             src={picture}
             alt="Bride and Groom"
-            className=" w-screen h-[60vh]  object-cover scale-[1.8] -translate-y-24 smx:scale-125 smx:translate-y-0 object-[center_90%] smx:object-[center_70%] sm:object-[center_60%] md:object-[center_45%] sm:scale-100"
+            className=" w-screen h-[60vh]  object-cover scale-150 -translate-y-24 smx:scale-125 smx:translate-y-0 object-[center_90%] smx:object-[center_70%] sm:object-[center_60%] md:object-[center_45%] sm:scale-100"
           />
         </div>
         </motion.div>

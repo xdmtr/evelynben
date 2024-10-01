@@ -75,14 +75,14 @@ const BrideGallery: React.FC = () => {
         className="z-0 flex flex-col gap-3= justify-start items-start relative"
         id="bride-gallery"
       >
-        <div className="bg-babypink-gradient-tb !bg-opacity-35  h-[30vh] w-full max-w-[540px] absolute z-10 bottom-0"></div>
+        <div className="bg-brown-gradient-gallery !bg-opacity-35  h-[30vh] w-full max-w-[540px] absolute z-10 bottom-0"></div>
         <div className="h-full w-full max-w-[540px] absolute z-0 bottom-0 bg-black bg-opacity-50 "></div>
         <motion.div
           ref={ref}
           initial="hidden"
           animate={controls}
           variants={slideUpVariants}
-          className="z-20 w-full max-w-[540px] py-5 px-10 flex flex-col justify-center gap-2 items-center"
+          className="z-20 w-full max-w-[540px] py-5 px-10 flex flex-col justify-center gap-5 items-center"
         >
           <div className="flex justify-center p-2 border border-white w-fit">
             <Image
@@ -142,9 +142,9 @@ const BrideGallery: React.FC = () => {
         </motion.div>
       </OnePage>
 
-      {/* Modal Section */}
+      {/* Modal with better scroll behavior */}
       {isModalOpen && selectedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 overflow-auto touch-pan-y">
           <div className="relative">
             <Image
               src={selectedImage}

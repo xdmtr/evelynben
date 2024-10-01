@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 declare global {
@@ -31,7 +31,7 @@ declare global {
   }
 }
 
-const Music: React.FC = () => {
+const Music = forwardRef((props, ref) => {
   const [isMuted, setIsMuted] = useState(false);
   const [player, setPlayer] = useState<YT.Player | null>(null);
 
@@ -43,45 +43,50 @@ const Music: React.FC = () => {
 
     window.onYouTubeIframeAPIReady = () => {
       const newPlayer = new window.YT.Player("music-player", {
-        videoId: "cpYYX3ONPGc", 
+        videoId: "cpYYX3ONPGc",
         events: {
           onReady: (event: YT.PlayerEvent) => {
-            event.target.setVolume(50); // Set initial volume
-            event.target.playVideo(); // Try to autoplay with sound
+            event.target.setVolume(50); 
           },
         },
         playerVars: {
-          autoplay: 1, // Autoplay the video
-          loop: 1, // Loop the video
-          playlist: "cpYYX3ONPGc", // Loop playlist
-          controls: 0, // Hide controls
-          showinfo: 0, // Hide video info
-          modestbranding: 1, // Remove YouTube logo
+          autoplay: 0,
+          loop: 1,
+          playlist: "cpYYX3ONPGc",
+          controls: 0,
+          showinfo: 0,
+          modestbranding: 1, 
         },
       });
       setPlayer(newPlayer);
     };
   }, []);
 
+  useImperativeHandle(ref, () => ({
+    playMusic: () => {
+      if (player) {
+        player.playVideo(); // Play the video
+      }
+    }
+  }));
+
   const toggleMute = () => {
     if (player) {
       if (isMuted) {
-        player.unMute(); // Unmute the player
+        player.unMute();
       } else {
-        player.mute(); // Mute the player
+        player.mute();
       }
-      setIsMuted(!isMuted); // Toggle mute state
+      setIsMuted(!isMuted);
     }
   };
 
   return (
     <>
-      {/* YouTube Player */}
-      <div className="hidden"> {/* Hide the iframe visually */}
+      <div className="hidden">
         <div id="music-player"></div>
       </div>
 
-      {/* Mute/Unmute Button */}
       <button
         onClick={toggleMute}
         className="fixed bottom-5 right-5 bg-gray-800 text-white p-2 rounded-full z-50"
@@ -90,6 +95,6 @@ const Music: React.FC = () => {
       </button>
     </>
   );
-};
+});
 
 export default Music;
