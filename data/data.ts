@@ -10,6 +10,8 @@ import gallerypthree2 from "@/public/gallery-page3/2.webp";
 import gallerypthree3 from "@/public/gallery-page3/3.webp";
 import gallerypthree4 from "@/public/gallery-page3/4.webp";
 import gallerypthree5 from "@/public/gallery-page3/5.webp";
+import gallerypthree6 from "@/public/gallery-page3/6.webp";
+import gallerypthree7 from "@/public/gallery-page3/7.webp";
 
 import lovestoryup1 from "@/public/lovestory-up/1.webp";
 import lovestoryup2 from "@/public/lovestory-up/2.webp";
@@ -43,6 +45,8 @@ export const galleryP3 = [
   gallerypthree3,
   gallerypthree4,
   gallerypthree5,
+  gallerypthree6,
+  gallerypthree7
 ]
 
 export const loveStoryUp = [

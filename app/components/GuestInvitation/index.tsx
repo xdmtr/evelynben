@@ -107,14 +107,17 @@ const GuestInvitation: React.FC = () => {
               <p className="font-Italianno tracking-wider text-2xl">
                 You are invited to witness <br /> and celebrate our special day
               </p>
-              <Link
-                href="#bride-initiation"
-                className="flex items-center gap-2 font-poppins bg-[#666666] bg-opacity-80 py-2 px-5 rounded-full shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
-                onClick={handleInvitationClick}
-              >
-                <BsEnvelopeOpenHeart />
-                Open Invitation
-              </Link>
+              <div className="flex flex-col">
+                <Link
+                  href="#bride-initiation"
+                  className="flex items-center gap-2 font-poppins bg-[#666666] bg-opacity-80 py-2 px-5 rounded-full shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
+                  onClick={handleInvitationClick}
+                >
+                  <BsEnvelopeOpenHeart />
+                  Open Invitation
+                </Link>
+                <p className="font-cinzel text-sm text-gray-200">(double click)</p>
+              </div>
             </motion.div>
           </div>
         </div>

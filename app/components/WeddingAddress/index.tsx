@@ -17,39 +17,28 @@ const WeddingAddress: React.FC = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
-    null
-  );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        setScrollDirection("down");
-      } else {
-        setScrollDirection("up");
-      }
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
-
+  // Animation controls
   const controls = useAnimation();
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: false,
-  });
+  const { ref: resepsiRef, inView: resepsiInView } = useInView({ triggerOnce: true });
+  const { ref: bibleVerseRef, inView: bibleVerseInView } = useInView({ triggerOnce: true });
+  const { ref: liveStreamingRef, inView: liveStreamingInView } = useInView({ triggerOnce: true });
+  const { ref: weddingGiftRef, inView: weddingGiftInView } = useInView({ triggerOnce: true });
 
   useEffect(() => {
-    if (inView && scrollDirection === "down") {
-      controls.start("visible");
-    }
-  }, [controls, inView, scrollDirection]);
+    if (resepsiInView) controls.start("visible");
+  }, [controls, resepsiInView]);
+
+  useEffect(() => {
+    if (bibleVerseInView) controls.start("visible");
+  }, [controls, bibleVerseInView]);
+
+  useEffect(() => {
+    if (liveStreamingInView) controls.start("visible");
+  }, [controls, liveStreamingInView]);
+
+  useEffect(() => {
+    if (weddingGiftInView) controls.start("visible");
+  }, [controls, weddingGiftInView]);
 
   // Animation variants for fade zoom-in
   const fadeZoomInVariants = {
@@ -78,15 +67,18 @@ const WeddingAddress: React.FC = () => {
         id="wedding-address"
       >
         <div className="bg-black opacity-30 absolute top-0 w-screen min-h-full h-auto z-0"></div>
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={controls}
-          variants={slideUpVariants}
-          className="w-full z-20 h-auto relative"
-        >
+
+        {/* Static part without animation */}
+        <div className="w-full z-20 h-auto relative">
           <div className="z-10 w-full flex flex-col items-center justify-between text-white gap-5 min-h-screen">
-            <div className="w-full bg-gradient-to-b from-[#8E8077] to-[#A69A92] bg-opacity-90 border-2 border-white flex flex-col items-center text-right">
+            {/* Animated section: Resepsi - Slide from bottom to top */}
+            <motion.div
+              ref={resepsiRef}
+              initial="hidden"
+              animate={resepsiInView ? "visible" : "hidden"}
+              variants={slideUpVariants} // Apply slide-up animation
+              className="w-full bg-gradient-to-b from-[#8E8077] to-[#A69A92] bg-opacity-90 border-2 border-white flex flex-col items-center text-right"
+            >
               <div className="w-full max-w-[540px] leading-none px-5 pb-5 flex flex-col items-end gap-3 font-poppins">
                 <h1 className="font-caramel text-[46px]">Resepsi</h1>
                 <div className="">
@@ -110,15 +102,16 @@ const WeddingAddress: React.FC = () => {
                   <PiMapPinBold /> Google Maps
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
             <div className="w-full max-w-[540px] p-5 flex flex-col items-center justify-around gap-5 flex-grow">
-              {/* Fade zoom in for Bible verse */}
+              {/* Animated section: Bible Verse - Fade and zoom in */}
               <motion.div
-                className="flex flex-col items-center justify-center text-center gap-3 font-questrial text-sm w-full py-5"
+                ref={bibleVerseRef}
                 initial="hidden"
-                animate={controls}
-                variants={fadeZoomInVariants}
+                animate={bibleVerseInView ? "visible" : "hidden"}
+                variants={fadeZoomInVariants} // Apply fade and zoom animation
+                className="flex flex-col items-center justify-center text-center gap-3 font-questrial text-sm w-full py-5"
               >
                 <p>
                   Demikianlah mereka bukan lagi dua, melainkan satu. <br />
@@ -128,12 +121,13 @@ const WeddingAddress: React.FC = () => {
                 <h3>( Matius 19:6 )</h3>
               </motion.div>
 
-              {/* Slide up for Live Streaming */}
+              {/* Animated section: Live Streaming - Slide from bottom to top */}
               <motion.div
-                className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
+                ref={liveStreamingRef}
                 initial="hidden"
-                animate={controls}
-                variants={slideUpVariants}
+                animate={liveStreamingInView ? "visible" : "hidden"}
+                variants={slideUpVariants} // Apply slide-up animation
+                className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
               >
                 <h2 className="font-caramel text-[46px] leading-none">
                   Live Streaming
@@ -151,12 +145,13 @@ const WeddingAddress: React.FC = () => {
                 </Link>
               </motion.div>
 
-              {/* Slide up for Wedding Gift */}
+              {/* Animated section: Wedding Gift - Slide from bottom to top */}
               <motion.div
-                className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
+                ref={weddingGiftRef}
                 initial="hidden"
-                animate={controls}
-                variants={slideUpVariants}
+                animate={weddingGiftInView ? "visible" : "hidden"}
+                variants={slideUpVariants} // Apply slide-up animation
+                className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
               >
                 <h2 className="font-caramel text-[46px] leading-none">
                   Wedding Gift
@@ -179,7 +174,7 @@ const WeddingAddress: React.FC = () => {
               </motion.div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </OnePage>
 
       {isDrawerOpen && (

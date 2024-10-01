@@ -26,7 +26,7 @@ const WeddingGiftDrawer: React.FC<WeddingGiftDrawerProps> = ({ isOpen, onClose }
 
   return (
     <motion.div
-      className="fixed inset-0 z-[99] flex items-end justify-center overflow-y-auto touch-pan-y" // Ensure scrollability on mobile
+      className="fixed inset-0 z-[99] flex items-end justify-center overflow-y-auto touch-pan-y" 
       initial="hidden"
       animate={isOpen ? "visible" : "hidden"}
       exit="exit"

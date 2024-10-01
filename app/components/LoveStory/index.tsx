@@ -16,7 +16,6 @@ const LoveStory: React.FC = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(null);
 
-  // Track scroll direction
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -34,17 +33,14 @@ const LoveStory: React.FC = () => {
     };
   }, [lastScrollY]);
 
-  // Framer Motion animation control
   const controls = useAnimation();
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: false,
   });
 
-  // Trigger the animation when the user scrolls down and the component comes into view
   useEffect(() => {
     if (inView && scrollDirection === "down") {
-      // Reset the animation every time the user scrolls down and the component enters view
       controls.start("visible");
     }
   }, [controls, inView, scrollDirection]);
@@ -122,14 +118,11 @@ const LoveStory: React.FC = () => {
           slidesPerView={1}
           loop={true}
           centeredSlides={true}
-          autoplay={{
-            delay: 5000,
-          }}
           pagination={{
             clickable: true,
           }}
           navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
+          modules={[Pagination, Navigation]}
           className="mySwiper max-w-[350px] max-h-[220px] sm:max-w-[540px]  w-full h-full sm:max-h-[320px] overflow-hidden "
         >
           {loveStoryDown.map((item, index) => (

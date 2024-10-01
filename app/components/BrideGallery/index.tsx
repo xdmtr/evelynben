@@ -131,7 +131,7 @@ const BrideGallery: React.FC = () => {
                   alt="background carousel"
                   width={160}
                   height={109}
-                  className="max-h-[109px] object-cover object-center md:object-[center_30%] border-2 border-white rounded-lg cursor-pointer z-40"
+                  className="max-h-[109px] overflow-hidden object-cover object-center md:object-[center_30%] border-2 border-white rounded-lg cursor-pointer z-40"
                   onClick={() =>
                     handleImageClick(typeof item === "string" ? item : item.src)
                   }
