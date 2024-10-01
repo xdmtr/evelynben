@@ -19,6 +19,7 @@ const GuestConfirmationMessage: React.FC = () => {
   const searchParams = useSearchParams();
   const initialGuestName = searchParams.get("to") || "";
 
+  // Use the initialGuestName to set the guest name; allow editing if it is empty.
   const [guestName, setGuestName] = useState(initialGuestName);
   const [guestMessage, setGuestMessage] = useState("");
   const [confirmation, setConfirmation] = useState("");
@@ -63,11 +64,18 @@ const GuestConfirmationMessage: React.FC = () => {
         setPostSuccessMessage(null);
       }, 3000);
 
-      return () => clearTimeout(timer); 
+      return () => clearTimeout(timer);
     }
   }, [postError, success]);
 
   const handleSubmit = async () => {
+    if (!guestName || !guestMessage || !confirmation) {
+      setPostErrorMessage("Nama, ucapan, dan konfirmasi kehadiran wajib diisi.");
+      return;
+    }
+
+    setPostErrorMessage(null);
+
     if (guestMessage.length > MAX_MESSAGE_LENGTH) return;
 
     const guestData = {
@@ -91,7 +99,7 @@ const GuestConfirmationMessage: React.FC = () => {
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     if (e.target.value.length <= MAX_MESSAGE_LENGTH) {
-      setGuestMessage(e.target.value); 
+      setGuestMessage(e.target.value);
     }
   };
 
@@ -143,6 +151,8 @@ const GuestConfirmationMessage: React.FC = () => {
                           setGuestName(e.target.value);
                         }
                       }}
+                      // Make input readonly if guestName is provided via URL
+                      readOnly={!!initialGuestName}
                     />
                   </div>
                   <div>
@@ -232,9 +242,7 @@ const GuestConfirmationMessage: React.FC = () => {
                 {loading ? (
                   <p>Loading...</p>
                 ) : error ? (
-                  <p className="text-red-500">
-                    Error loading messages.
-                  </p>
+                  <p className="text-red-500">Error loading messages.</p>
                 ) : !guests || guests.length === 0 ? (
                   <p className="text-gray-200">No guests to display.</p>
                 ) : (
@@ -254,9 +262,7 @@ const GuestConfirmationMessage: React.FC = () => {
                           className="py-3 border-b border-white last:border-transparent flex gap-2"
                         >
                           <div className="bg-white text-darkBrowny border border-darkBrowny p-2 h-[30px] w-[30px] rounded-full font-bold relative flex items-center justify-center">
-                            <p className="absolute ">
-                              {getInitials(guest.Name)}
-                            </p>
+                            <p className="absolute ">{getInitials(guest.Name)}</p>
                           </div>
                           <div>
                             <strong className="pb-2 text-sm">
@@ -285,7 +291,7 @@ const GuestConfirmationMessage: React.FC = () => {
                 With love, <br /> Evelyn & Benhard
               </p>
                <p className="font-Italianno text-2xl">
-                Present with love, Deili Invitation
+                Crafting memories, design your dream
               </p>
             </div>
             <div className="bg-gradient-to-b from-[#8E8077] to-[#A69A92] w-full h-auto flex items-center justify-center rounded-t-xl gap-2 py-1 self-end text-white z-20">
@@ -294,7 +300,7 @@ const GuestConfirmationMessage: React.FC = () => {
                 alt="Image of toraja couple"
                 className="w-[30px]"
               />
-              <p className="font-poppins text-sm">
+              <p className="font-poppins text-xs font-semibold">
                 2024 &copy; Deili Invitation, All right reserved.
               </p>
             </div>

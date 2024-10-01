@@ -3,14 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
-// Declare the YT namespace and the Window interface
 declare global {
   interface Window {
     onYouTubeIframeAPIReady: () => void;
-    YT: typeof YT; // Use typeof YT to prevent type conflicts
+    YT: typeof YT; 
   }
 
-  // Define the YT namespace with its properties
   namespace YT {
     interface PlayerOptions {
       videoId: string;
@@ -34,20 +32,18 @@ declare global {
 }
 
 const Music: React.FC = () => {
-  const [isMuted, setIsMuted] = useState(false); // Initially not muted
+  const [isMuted, setIsMuted] = useState(false);
   const [player, setPlayer] = useState<YT.Player | null>(null);
 
   useEffect(() => {
-    // Create YouTube script
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
 
-    // Define the YouTube player when API is ready
     window.onYouTubeIframeAPIReady = () => {
       const newPlayer = new window.YT.Player("music-player", {
-        videoId: "cpYYX3ONPGc", // YouTube video ID
+        videoId: "cpYYX3ONPGc", 
         events: {
           onReady: (event: YT.PlayerEvent) => {
             event.target.setVolume(50); // Set initial volume

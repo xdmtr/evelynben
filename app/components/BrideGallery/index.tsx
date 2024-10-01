@@ -51,7 +51,7 @@ const BrideGallery: React.FC = () => {
   }, [controls, inView, scrollDirection]);
 
   const slideUpVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
