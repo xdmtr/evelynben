@@ -39,10 +39,8 @@ const PemberkatanAddress: React.FC = () => {
     triggerOnce: false,
   });
 
-  // Trigger the animation when the user scrolls down and the component comes into view
   useEffect(() => {
     if (inView && scrollDirection === "down") {
-      // Reset the animation every time the user scrolls down and the component enters view
       controls.start("visible");
     }
   }, [controls, inView, scrollDirection]);
@@ -95,7 +93,7 @@ const PemberkatanAddress: React.FC = () => {
           <Image
             src={picture}
             alt="Bride and Groom"
-            className=" w-screen h-[60vh]  object-cover scale-150 -translate-y-24 smx:scale-125 smx:translate-y-0 object-[center_90%] smx:object-[center_70%] sm:object-[center_60%] md:object-[center_45%] sm:scale-100"
+            className=" w-screen h-[60vh]  object-cover scale-150 -translate-y-20 smx:scale-125 smx:translate-y-0 object-[center_90%] smx:object-[center_70%] sm:object-[center_60%] md:object-[center_45%] sm:scale-100"
           />
         </div>
         </motion.div>
