@@ -97,4 +97,6 @@ const Music = forwardRef((props, ref) => {
   );
 });
 
+Music.displayName = "Music";
+
 export default Music;
