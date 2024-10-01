@@ -29,7 +29,7 @@ export default function Home() {
             <Image 
               src={logo}
               alt="logo"
-              className="animate-bounce duration-700"
+              className="animate-bounce duration-700 w-[50px] h-[50px]"
             />
             <p className="font-cinzel text-xl">Loading Invitation...</p> 
           </div>
