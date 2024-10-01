@@ -25,7 +25,7 @@ export default function Home() {
           <BackgroundCarousel overlay="bg-black opacity-10" />
         </div>
         <Suspense fallback={
-          <div className="w-full h-screen bg-browny flex flex-col items-center text-center gap-5">
+          <div className="w-full h-screen bg-browny flex flex-col items-center text-center gap-5 mt-20">
             <Image 
               src={logo}
               alt="logo"
