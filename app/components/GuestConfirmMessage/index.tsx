@@ -23,7 +23,8 @@ const GuestConfirmationMessage: React.FC = () => {
   const [guestName, setGuestName] = useState(initialGuestName);
   const [guestMessage, setGuestMessage] = useState("");
   const [confirmation, setConfirmation] = useState("");
-  const [shouldRefetch, setShouldRefetch] = useState(false);
+  const [shouldRefetch, setShouldRefetch] = useState(false); // Tracks refetch after submission
+  const [hasSubmittedOnce, setHasSubmittedOnce] = useState(false); // Tracks if first submission has been made
 
   const [postErrorMessage, setPostErrorMessage] = useState<string | null>(null);
   const [postSuccessMessage, setPostSuccessMessage] = useState<string | null>(
@@ -50,6 +51,7 @@ const GuestConfirmationMessage: React.FC = () => {
     }
   }, [controls, inView]);
 
+  // Refetch guests automatically after the first successful submission
   useEffect(() => {
     if (postError || success) {
       if (postError) {
@@ -57,6 +59,17 @@ const GuestConfirmationMessage: React.FC = () => {
       }
       if (success) {
         setPostSuccessMessage("Ucapan berhasil dikirim!");
+
+        // If this is the first successful submission, set flag and trigger refetch
+        if (!hasSubmittedOnce) {
+          setHasSubmittedOnce(true);
+          setShouldRefetch(true); // Trigger refetch
+        }
+
+        // Clear form inputs after successful submission
+        setGuestName("");
+        setGuestMessage("");
+        setConfirmation("");
       }
 
       const timer = setTimeout(() => {
@@ -66,7 +79,7 @@ const GuestConfirmationMessage: React.FC = () => {
 
       return () => clearTimeout(timer);
     }
-  }, [postError, success]);
+  }, [postError, success, hasSubmittedOnce]);
 
   const handleSubmit = async () => {
     if (!guestName || !guestMessage || !confirmation) {
@@ -88,10 +101,7 @@ const GuestConfirmationMessage: React.FC = () => {
     await postGuest(guestData);
 
     if (success) {
-      setGuestName("");
-      setGuestMessage("");
-      setConfirmation("");
-      setShouldRefetch(!shouldRefetch);
+      setShouldRefetch(!shouldRefetch); // Toggle refetch state after successful post
     }
   };
 
