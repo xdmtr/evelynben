@@ -11,7 +11,7 @@ const BrideInitiation: React.FC = () => {
   const controls = useAnimation();
   const { ref, inView } = useInView({
     threshold: 0.1, 
-    triggerOnce: true,  // Only trigger the animation once
+    triggerOnce: true,
   });
 
   useEffect(() => {

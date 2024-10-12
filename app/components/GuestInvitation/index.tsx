@@ -125,7 +125,7 @@ const GuestInvitation: React.FC = () => {
                 <Link
                   href="#bride-initiation"
                   className="flex items-center gap-2 font-poppins bg-[#666666] bg-opacity-80 py-2 px-5 rounded-full shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
-                  onClick={handleInvitationClick} // Trigger music play and scroll
+                  onClick={handleInvitationClick}
                 >
                   <BsEnvelopeOpenHeart />
                   Open Invitation
@@ -135,8 +135,6 @@ const GuestInvitation: React.FC = () => {
           </div>
         </div>
       </OnePage>
-
-      {/* Music component with ref to control the music */}
       <Music ref={musicRef} onReady={handleMusicReady} />
     </>
   );

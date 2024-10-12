@@ -50,7 +50,6 @@ const GuestConfirmationMessage: React.FC = () => {
     }
   }, [controls, inView]);
 
-  // Refetch guests automatically after the first successful submission
   useEffect(() => {
     if (postError || success) {
       if (postError) {
@@ -59,10 +58,9 @@ const GuestConfirmationMessage: React.FC = () => {
       if (success) {
         setPostSuccessMessage("Ucapan berhasil dikirim!");
 
-        // If this is the first successful submission, set flag and trigger refetch
         if (!hasSubmittedOnce) {
           setHasSubmittedOnce(true);
-          setShouldRefetch(true); // Trigger refetch
+          setShouldRefetch(true); 
         }
 
         // Clear form inputs after successful submission
@@ -100,7 +98,7 @@ const GuestConfirmationMessage: React.FC = () => {
     await postGuest(guestData);
 
     if (success) {
-      setShouldRefetch(!shouldRefetch); // Toggle refetch state after successful post
+      setShouldRefetch(!shouldRefetch);
     }
   };
 
@@ -160,7 +158,6 @@ const GuestConfirmationMessage: React.FC = () => {
                           setGuestName(e.target.value);
                         }
                       }}
-                      // Make input readonly if guestName is provided via URL
                       readOnly={!!initialGuestName}
                     />
                   </div>

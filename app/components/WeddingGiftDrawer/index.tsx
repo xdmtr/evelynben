@@ -11,16 +11,16 @@ interface WeddingGiftDrawerProps {
 
 const WeddingGiftDrawer: React.FC<WeddingGiftDrawerProps> = ({ isOpen, onClose }) => {
   const drawerVariants = {
-    hidden: { y: "100%", opacity: 0 }, // Start off the screen (hidden)
+    hidden: { y: "100%", opacity: 0 }, 
     visible: { 
       y: 0, 
       opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" } // Slide up with transition
+      transition: { duration: 0.5, ease: "easeOut" }
     },
     exit: {
       y: "100%", 
       opacity: 0, 
-      transition: { duration: 0.3, ease: "easeIn" } // Slide back down
+      transition: { duration: 0.3, ease: "easeIn" }
     },
   };
 
@@ -39,7 +39,7 @@ const WeddingGiftDrawer: React.FC<WeddingGiftDrawerProps> = ({ isOpen, onClose }
         >
           <FiX className="text-white" />
         </button>
-        <WeddingGift /> {/* The Wedding Gift content */}
+        <WeddingGift />
       </div>
     </motion.div>
   );

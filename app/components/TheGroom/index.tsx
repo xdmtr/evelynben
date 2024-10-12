@@ -35,14 +35,12 @@ const TheGroom: React.FC = () => {
     triggerOnce: false,
   });
 
-  // Trigger animation when scrolling down
   useEffect(() => {
     if (inView && scrollDirection === "down") {
       controls.start("visible");
     }
   }, [controls, inView, scrollDirection]);
 
-  // Animation variants
   const slideUpVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {

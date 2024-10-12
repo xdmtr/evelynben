@@ -17,7 +17,6 @@ const WeddingAddress: React.FC = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  // Animation controls
   const controls = useAnimation();
   const { ref: resepsiRef, inView: resepsiInView } = useInView({ triggerOnce: true });
   const { ref: bibleVerseRef, inView: bibleVerseInView } = useInView({ triggerOnce: true });
@@ -40,7 +39,6 @@ const WeddingAddress: React.FC = () => {
     if (weddingGiftInView) controls.start("visible");
   }, [controls, weddingGiftInView]);
 
-  // Animation variants for fade zoom-in
   const fadeZoomInVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
@@ -50,7 +48,6 @@ const WeddingAddress: React.FC = () => {
     },
   };
 
-  // Slide up animation variant
   const slideUpVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -68,15 +65,13 @@ const WeddingAddress: React.FC = () => {
       >
         <div className="bg-black opacity-30 absolute top-0 w-screen min-h-full h-auto z-0"></div>
 
-        {/* Static part without animation */}
         <div className="w-full z-20 h-auto relative">
           <div className="z-10 w-full flex flex-col items-center justify-between text-white gap-5 min-h-screen">
-            {/* Animated section: Resepsi - Slide from bottom to top */}
             <motion.div
               ref={resepsiRef}
               initial="hidden"
               animate={resepsiInView ? "visible" : "hidden"}
-              variants={slideUpVariants} // Apply slide-up animation
+              variants={slideUpVariants} 
               className="w-full bg-gradient-to-b from-[#8E8077] to-[#A69A92] bg-opacity-90 border-2 border-white flex flex-col items-center text-right"
             >
               <div className="w-full max-w-[540px] leading-none px-5 pb-5 flex flex-col items-end gap-3 font-poppins">
@@ -105,12 +100,11 @@ const WeddingAddress: React.FC = () => {
             </motion.div>
 
             <div className="w-full max-w-[540px] p-5 flex flex-col items-center justify-around gap-5 flex-grow">
-              {/* Animated section: Bible Verse - Fade and zoom in */}
               <motion.div
                 ref={bibleVerseRef}
                 initial="hidden"
                 animate={bibleVerseInView ? "visible" : "hidden"}
-                variants={fadeZoomInVariants} // Apply fade and zoom animation
+                variants={fadeZoomInVariants}
                 className="flex flex-col items-center justify-center text-center gap-3 font-questrial text-sm w-full py-5"
               >
                 <p>
@@ -121,12 +115,11 @@ const WeddingAddress: React.FC = () => {
                 <h3>( Matius 19:6 )</h3>
               </motion.div>
 
-              {/* Animated section: Live Streaming - Slide from bottom to top */}
               <motion.div
                 ref={liveStreamingRef}
                 initial="hidden"
                 animate={liveStreamingInView ? "visible" : "hidden"}
-                variants={slideUpVariants} // Apply slide-up animation
+                variants={slideUpVariants} 
                 className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
               >
                 <h2 className="font-caramel text-[46px] leading-none">
@@ -144,13 +137,11 @@ const WeddingAddress: React.FC = () => {
                   Youtube
                 </Link>
               </motion.div>
-
-              {/* Animated section: Wedding Gift - Slide from bottom to top */}
               <motion.div
                 ref={weddingGiftRef}
                 initial="hidden"
                 animate={weddingGiftInView ? "visible" : "hidden"}
-                variants={slideUpVariants} // Apply slide-up animation
+                variants={slideUpVariants} 
                 className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
               >
                 <h2 className="font-caramel text-[46px] leading-none">
@@ -160,7 +151,7 @@ const WeddingAddress: React.FC = () => {
                   Doa restu yang kami terima sangat berarti, namun jika ingin memberi tanda kasih, tentunya semakin melengkapi kebahagiaan kami
                 </p>
                 <button
-                  onClick={toggleDrawer} // Toggle the drawer when clicked
+                  onClick={toggleDrawer}
                   className="text-xs py-1 px-3 rounded-full border border-white bg-brown-gradient w-fit self-center flex items-center gap-1 shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
                 >
                   <FiGift className="text-lg" /> Click Here

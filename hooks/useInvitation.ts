@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Set the base URL from the environment variable
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-// Types
 type Guest = {
   _id?: string;
   Name: string;
@@ -20,7 +18,6 @@ type Client = {
   invitation_types: string;
 };
 
-// Hook for fetching guests by client ID
 export const useGetGuestsByClient = (clientId: string, refetchDependency: boolean) => {
   const [guests, setGuests] = useState<Guest[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -44,13 +41,11 @@ export const useGetGuestsByClient = (clientId: string, refetchDependency: boolea
     if (clientId) {
       fetchGuests();
     }
-  }, [clientId, refetchDependency]); // refetchDependency will trigger refetch
+  }, [clientId, refetchDependency]);
 
   return { guests, loading, error };
 };
 
-
-// Hook for fetching guest by guest ID
 export const useGetGuestById = (guestId: string) => {
   const [guest, setGuest] = useState<Guest | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

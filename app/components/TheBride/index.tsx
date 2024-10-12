@@ -36,14 +36,12 @@ const TheBride: React.FC = () => {
     triggerOnce: false,
   });
 
-  // Trigger animation when scrolling down
   useEffect(() => {
     if (inView && scrollDirection === "down") {
       controls.start("visible");
     }
   }, [controls, inView, scrollDirection]);
 
-  // Animation variants
   const slideUpVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -81,7 +79,6 @@ const TheBride: React.FC = () => {
               </p>
             </div>
 
-            {/* Animate only 'The Bride' title */}
             <motion.div
               className="p-5 h-full flex flex-col self-end font-cinzel text-4xl"
               ref={ref}
@@ -92,8 +89,6 @@ const TheBride: React.FC = () => {
               <h1>The</h1>
               <h1 className="ml-5">Bride</h1>
             </motion.div>
-
-            {/* Animate only the bride's name */}
             <motion.div
               className="h-full flex flex-col justify-end p-5"
               ref={ref}

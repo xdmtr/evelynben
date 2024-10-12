@@ -14,7 +14,6 @@ const PemberkatanAddress: React.FC = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(null);
 
-  // Track scroll direction
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -32,7 +31,6 @@ const PemberkatanAddress: React.FC = () => {
     };
   }, [lastScrollY]);
 
-  // Framer Motion animation control
   const controls = useAnimation();
   const { ref, inView } = useInView({
     threshold: 0.1,
