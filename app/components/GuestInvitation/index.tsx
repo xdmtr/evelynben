@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation"; 
+import { useSearchParams, useRouter } from "next/navigation"; 
 import OnePage from "@/components/OnePage";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,9 +15,9 @@ const GuestInvitation: React.FC = () => {
   const guestName = searchParams.get("to") || "Our Guest"; 
   const [isScrollLocked, setIsScrollLocked] = useState(true); 
   const [isMusicReady, setIsMusicReady] = useState(false); // Track if music is ready
-
   const controls = useAnimation();
   const musicRef = useRef<any>(null); 
+  const router = useRouter(); // Use router for navigation
 
   const topToBottom = {
     hidden: { opacity: 0, y: -100 },
@@ -30,6 +30,13 @@ const GuestInvitation: React.FC = () => {
   };
 
   useEffect(() => {
+    // Clear hash fragment from URL when component mounts
+    if (typeof window !== "undefined" && window.location.hash) {
+      // Remove the hash from the URL without reloading the page
+      const newUrl = window.location.pathname;
+      router.replace(newUrl);
+    }
+
     controls.start("visible");
 
     // Lock scrolling when component is mounted
@@ -43,7 +50,7 @@ const GuestInvitation: React.FC = () => {
       // Unlock scrolling when component is unmounted
       document.body.style.overflow = "auto";
     };
-  }, [controls, isScrollLocked]);
+  }, [controls, isScrollLocked, router]);
 
   const handleInvitationClick = () => {
     if (isMusicReady && musicRef.current) {

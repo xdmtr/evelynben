@@ -4,34 +4,13 @@ import React, { useState, useEffect, forwardRef, useImperativeHandle } from "rea
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 interface MusicProps {
-  onReady: () => void; 
+  onReady: () => void;
 }
 
 declare global {
   interface Window {
     onYouTubeIframeAPIReady: () => void;
     YT: typeof YT;
-  }
-
-  namespace YT {
-    interface PlayerOptions {
-      videoId: string;
-      playerVars?: {
-        autoplay?: number;
-        loop?: number;
-        playlist?: string;
-        controls?: number;
-        showinfo?: number;
-        modestbranding?: number;
-      };
-      events?: {
-        onReady?: (event: PlayerEvent) => void;
-      };
-    }
-
-    interface PlayerEvent {
-      target: Player;
-    }
   }
 }
 
@@ -47,15 +26,15 @@ const Music = forwardRef<any, MusicProps>(({ onReady }, ref) => {
 
     window.onYouTubeIframeAPIReady = () => {
       const newPlayer = new window.YT.Player("music-player", {
-        videoId: "cpYYX3ONPGc",
+        videoId: "cpYYX3ONPGc", // Replace with your video ID
         events: {
           onReady: (event: YT.PlayerEvent) => {
             event.target.setVolume(50);
-            onReady();
+            onReady(); // Notify that the player is ready
           },
         },
         playerVars: {
-          autoplay: 0, 
+          autoplay: 0, // Autoplay off
           loop: 1,
           playlist: "jtK-xIM-7tU",
           controls: 0,
@@ -75,6 +54,7 @@ const Music = forwardRef<any, MusicProps>(({ onReady }, ref) => {
     }
   }));
 
+  // Mute/Unmute toggle
   const toggleMute = () => {
     if (player) {
       if (isMuted) {
@@ -88,10 +68,12 @@ const Music = forwardRef<any, MusicProps>(({ onReady }, ref) => {
 
   return (
     <>
+      {/* Hidden YouTube Player container */}
       <div className="hidden">
         <div id="music-player"></div>
       </div>
 
+      {/* Mute/Unmute Button */}
       <button
         onClick={toggleMute}
         className="fixed bottom-5 right-5 bg-gray-800 text-white p-2 rounded-full z-50"
