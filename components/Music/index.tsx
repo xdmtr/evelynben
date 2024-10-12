@@ -3,9 +3,8 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
-// Define prop types for Music component
 interface MusicProps {
-  onReady: () => void; // onReady function prop
+  onReady: () => void; 
 }
 
 declare global {
@@ -48,15 +47,15 @@ const Music = forwardRef<any, MusicProps>(({ onReady }, ref) => {
 
     window.onYouTubeIframeAPIReady = () => {
       const newPlayer = new window.YT.Player("music-player", {
-        videoId: "cpYYX3ONPGc", // Replace with your video ID
+        videoId: "cpYYX3ONPGc",
         events: {
           onReady: (event: YT.PlayerEvent) => {
-            event.target.setVolume(50); // Set initial volume
-            onReady(); // Notify that the music is ready to play
+            event.target.setVolume(50);
+            onReady();
           },
         },
         playerVars: {
-          autoplay: 0,
+          autoplay: 0, 
           loop: 1,
           playlist: "jtK-xIM-7tU",
           controls: 0,
@@ -71,7 +70,7 @@ const Music = forwardRef<any, MusicProps>(({ onReady }, ref) => {
   useImperativeHandle(ref, () => ({
     playMusic: () => {
       if (player) {
-        player.playVideo(); // Play the video
+        player.playVideo(); // Play the video when called
       }
     }
   }));
