@@ -100,7 +100,7 @@ const WeddingDate: React.FC = () => {
             <h1 className="font-caramel text-[90px] leading-[0.9]">
               Evelyn <br /> & <br /> Benhard
             </h1>
-            <div className="mt-5 flex items-center justify-around w-full font-cinzel">
+            <div className="mt-5 flex items-center justify-around w-full max-w-[540px] font-cinzel">
               <div className="bg-[#666666] font-bold bg-opacity-40 p-2 px-5 rounded-xl">
                 <p className="text-xl">{timeLeft.days}</p>
                 <p className="text-[8px]">Days</p>
