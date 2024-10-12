@@ -137,7 +137,7 @@ const WeddingAddress: React.FC = () => {
                   melalui tautan dibawah ini
                 </p>
                 <Link
-                  href="https://www.youtube.com/@inforkomGTJGalaxi/featured"
+                  href="https://www.youtube.com/live/n4SE2F2FI1E?si=QuV7ZE6nfdTMMyLW"
                   className="text-xs py-1 px-3 rounded-full border border-white bg-brown-gradient w-fit self-center flex items-center gap-1 shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
                 >
                   <FaYoutube className="text-red-500 text-lg" />

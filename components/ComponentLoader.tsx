@@ -1,16 +1,13 @@
 "use client"
-
 import React, { useEffect } from 'react';
-import { useComponentLoad } from '@/context/ComponentLoadContext';
 
-export const ComponentLoader = (Component: React.ComponentType, componentName: string) => {
-    return function WrappedComponent(props: any) {
-      const { markComponentAsLoaded } = useComponentLoad();
-  
-      useEffect(() => {
-        markComponentAsLoaded(componentName);
-      }, [componentName, markComponentAsLoaded]);
-  
-      return <Component {...props} />;
-    };
+// HOC to wrap dynamic components and mark them as loaded
+export const ComponentLoader = (Component: React.ComponentType<any>, onLoad: () => void) => {
+  return function WrappedComponent(props: any) {
+    useEffect(() => {
+      onLoad(); // Notify that the component has loaded
+    }, []);
+
+    return <Component {...props} />; // Render the wrapped component with its props
   };
+};

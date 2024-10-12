@@ -1,3 +1,5 @@
+"use client"
+
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 interface ComponentLoadContextType {
@@ -8,7 +10,6 @@ interface ComponentLoadContextType {
 // Create the context
 const ComponentLoadContext = createContext<ComponentLoadContextType | undefined>(undefined);
 
-// Hook to use the context
 export const useComponentLoad = () => {
   const context = useContext(ComponentLoadContext);
   if (!context) {
@@ -17,7 +18,6 @@ export const useComponentLoad = () => {
   return context;
 };
 
-// Provider component
 export const ComponentLoadProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [loadedComponents, setLoadedComponents] = useState<Record<string, boolean>>({
     GuestInvitation: false,
@@ -33,11 +33,10 @@ export const ComponentLoadProvider: React.FC<{ children: ReactNode }> = ({ child
   });
 
   const markComponentAsLoaded = (componentName: string) => {
-    console.log(`${componentName} loaded`); // Log for debugging
-    setLoadedComponents((prev) => ({ ...prev, [componentName]: true }));
+    setLoadedComponents((prevState) => ({ ...prevState, [componentName]: true }));
   };
 
-  const allComponentsLoaded = Object.values(loadedComponents).every((status) => status === true);
+  const allComponentsLoaded = Object.values(loadedComponents).every((status) => status);
 
   return (
     <ComponentLoadContext.Provider value={{ markComponentAsLoaded, allComponentsLoaded }}>
