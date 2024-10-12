@@ -5,9 +5,9 @@ import React, { useEffect } from 'react';
 export const ComponentLoader = (Component: React.ComponentType<any>, onLoad: () => void) => {
   return function WrappedComponent(props: any) {
     useEffect(() => {
-      onLoad(); // Notify that the component has loaded
+      onLoad(); // Notify that the component has loaded when it mounts
     }, []);
 
-    return <Component {...props} />; // Render the wrapped component with its props
+    return <Component {...props} />; // Render the component with passed props
   };
 };

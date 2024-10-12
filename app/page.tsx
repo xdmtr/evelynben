@@ -1,79 +1,71 @@
-"use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import dynamic from "next/dynamic";
+import React from "react";
+import logo from "@/public/logo.png";
+import BrideInitiation from "./components/BrideInitiation";
+import WeddingDate from "./components/WeddingDate";
+import BrideGallery from "./components/BrideGallery";
+import TheBride from "./components/TheBride";
+import TheGroom from "./components/TheGroom";
+import LoveStory from "./components/LoveStory";
+import PemberkatanAddress from "./components/PemberkatanAddress";
+import WeddingAddress from "./components/WeddingAddress";
 import BackgroundCarousel from "@/components/BackgroundCarousel";
 import ImageSeparator from "@/components/Separator/ImageSeparator";
 import ImageSeparatorBrown from "@/components/Separator/ImageSeparatorBrown";
-import { ComponentLoader } from "@/components/ComponentLoader";
+import Image from "next/image";
+import dynamic from 'next/dynamic';
 
-// Dynamically import components
-const GuestInvitation = dynamic(() => import('./components/GuestInvitation'), { ssr: false });
-const BrideInitiation = dynamic(() => import('./components/BrideInitiation'), { ssr: false });
-const WeddingDate = dynamic(() => import('./components/WeddingDate'), { ssr: false });
-const BrideGallery = dynamic(() => import('./components/BrideGallery'), { ssr: false });
-const TheBride = dynamic(() => import('./components/TheBride'), { ssr: false });
-const TheGroom = dynamic(() => import('./components/TheGroom'), { ssr: false });
-const LoveStory = dynamic(() => import('./components/LoveStory'), { ssr: false });
-const PemberkatanAddress = dynamic(() => import('./components/PemberkatanAddress'), { ssr: false });
-const WeddingAddress = dynamic(() => import('./components/WeddingAddress'), { ssr: false });
-const GuestConfirmationMessage = dynamic(() => import('./components/GuestConfirmMessage'), { ssr: false });
+const GuestInvitation = dynamic(() => import('./components/GuestInvitation'), {
+  loading: () => (
+    <div className="w-full h-screen bg-browny flex flex-col items-center text-center gap-5 pt-20">
+      <Image 
+        src={logo}
+        alt="logo"
+        className="animate-bounce duration-700 w-[50px] h-[50px]"
+      />
+      <p className="font-cinzel text-xl">Loading Invitation...</p> 
+    </div>
+  ),
+  ssr: false, 
+});
+
+const GuestConfirmationMessage = dynamic(() => import('./components/GuestConfirmMessage'), {
+  loading: () => <div>Loading Confirmation...</div>,
+});
 
 export default function Home() {
-  const [componentsLoaded, setComponentsLoaded] = useState(0); // Track how many components have loaded
-  const totalComponents = 10; // Total number of components
-
-  const handleComponentLoad = () => {
-    setComponentsLoaded((prev) => prev + 1); // Increment count when a component loads
-  };
-
-  const allComponentsLoaded = componentsLoaded === totalComponents; // Check if all components are loaded
-
   return (
     <>
-      {/* Splash screen, displayed while loading */}
-      {!allComponentsLoaded && (
-        <div className="w-full h-screen bg-browny flex flex-col items-center justify-center fixed top-0 left-0 z-50">
-          <Image
-            src="/logo.png" // Path to your logo
-            alt="logo"
-            width={100}
-            height={100}
-            className="w-[100px] h-[100px] animate-bounce"
-          />
+      <div className="m-0 w-full overflow-x-hidden relative">
+        <div className="w-full flex flex-col items-center fixed">
+          <BackgroundCarousel overlay="bg-black opacity-10" />
         </div>
-      )}
-
-      {/* Main content */}
-      {allComponentsLoaded && (
-        <div className="m-0 w-full overflow-x-hidden relative">
-          {/* Background Carousel */}
-          <div className="w-full flex flex-col items-center fixed">
-            <BackgroundCarousel overlay="bg-black opacity-10" />
-          </div>
-
-          {/* Render components */}
-          <div>
-            {/* Render components with ComponentLoader */}
-            {ComponentLoader(GuestInvitation, handleComponentLoad)({})}
-            {ComponentLoader(BrideInitiation, handleComponentLoad)({})}
-            {ComponentLoader(WeddingDate, handleComponentLoad)({})}
-            {ComponentLoader(BrideGallery, handleComponentLoad)({})}
-            <div className="w-full flex flex-col items-center m-0">
-              <ImageSeparator />
-            </div>
-            {ComponentLoader(TheBride, handleComponentLoad)({})}
-            {ComponentLoader(TheGroom, handleComponentLoad)({})}
-            <div className="w-full flex flex-col items-center m-0">
-              <ImageSeparatorBrown />
-            </div>
-            {ComponentLoader(LoveStory, handleComponentLoad)({})}
-            {ComponentLoader(PemberkatanAddress, handleComponentLoad)({})}
-            {ComponentLoader(WeddingAddress, handleComponentLoad)({})}
-            {ComponentLoader(GuestConfirmationMessage, handleComponentLoad)({})}
-          </div>
+        
+        {/* Dynamically loaded components with custom loading indicators */}
+        <GuestInvitation />
+        
+        {/* Static Components */}
+        <BrideInitiation />
+        <WeddingDate />
+        <BrideGallery />
+        
+        <div className="w-full flex flex-col items-center m-0">
+          <ImageSeparator />
         </div>
-      )}
+        
+        <TheBride />
+        <TheGroom />
+        
+        <div className="w-full flex flex-col items-center m-0">
+          <ImageSeparatorBrown />
+        </div>
+        
+        <LoveStory />
+        <PemberkatanAddress />
+        <WeddingAddress />
+        
+        {/* Another dynamically loaded component */}
+        <GuestConfirmationMessage />
+      </div>
     </>
   );
 }
