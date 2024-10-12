@@ -5,7 +5,7 @@ import Image from "next/image";
 import picture from "@/public/bg-carousel/4.webp";
 import { galleryP3 } from "@/data/data";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Pagination, Autoplay } from "swiper/modules";
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -16,39 +16,17 @@ const BrideGallery: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
-    null
-  );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY) {
-        setScrollDirection("down");
-      } else {
-        setScrollDirection("up");
-      }
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
-
   const controls = useAnimation();
   const { ref, inView } = useInView({
     threshold: 0.1,
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   useEffect(() => {
-    if (inView && scrollDirection === "down") {
+    if (inView) {
       controls.start("visible");
     }
-  }, [controls, inView, scrollDirection]);
+  }, [controls, inView]);
 
   const slideUpVariants = {
     hidden: { opacity: 0, y: 10 },
@@ -72,10 +50,10 @@ const BrideGallery: React.FC = () => {
   return (
     <>
       <OnePage
-        className="z-0 flex flex-col gap-3= justify-start items-start relative"
+        className="z-20 flex flex-col gap-3= justify-start items-start relative"
         id="bride-gallery"
       >
-        <div className="bg-brown-gradient-gallery !bg-opacity-35  h-[30vh] w-full max-w-[540px] absolute z-10 bottom-0"></div>
+        <div className="bg-brown-gradient-gallery !bg-opacity-35 h-[30vh] w-full max-w-[540px] absolute z-10 bottom-0"></div>
         <div className="h-full w-full max-w-[540px] absolute z-0 bottom-0 bg-black bg-opacity-50 "></div>
         <motion.div
           ref={ref}
@@ -103,43 +81,35 @@ const BrideGallery: React.FC = () => {
             </p>
           </div>
         </motion.div>
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={controls}
-          variants={slideUpVariants}
-          className="w-full z-20"
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={5}
+          loop={true}
+          centeredSlides={false}
+          autoplay={{
+            delay: 5000,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Autoplay, Pagination]}
+          className="z-50 mySwiper w-full overflow-hidden !p-2 max-w-[540px]"
         >
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={5}
-            loop={true}
-            centeredSlides={false}
-            autoplay={{
-              delay: 5000,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Autoplay, Pagination]}
-            className="mySwiper w-full overflow-hidden !p-2 max-w-[540px]"
-          >
-            {galleryP3.map((item, index) => (
-              <SwiperSlide key={index}>
-                <Image
-                  src={typeof item === "string" ? item : item.src}
-                  alt="background carousel"
-                  width={160}
-                  height={109}
-                  className="max-h-[109px] overflow-hidden object-cover object-center md:object-[center_30%] border-2 border-white rounded-lg cursor-pointer z-40"
-                  onClick={() =>
-                    handleImageClick(typeof item === "string" ? item : item.src)
-                  }
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </motion.div>
+          {galleryP3.map((item, index) => (
+            <SwiperSlide key={index}>
+              <Image
+                src={typeof item === "string" ? item : item.src}
+                alt="background carousel"
+                width={160}
+                height={109}
+                className="max-h-[109px] overflow-hidden object-cover object-center md:object-[center_30%] border-2 border-white rounded-lg cursor-pointer z-40"
+                onClick={() =>
+                  handleImageClick(typeof item === "string" ? item : item.src)
+                }
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </OnePage>
 
       {isModalOpen && selectedImage && (
