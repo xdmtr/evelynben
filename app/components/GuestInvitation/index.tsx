@@ -16,7 +16,7 @@ const GuestInvitation: React.FC = () => {
   const [isScrollLocked, setIsScrollLocked] = useState(true); 
   const [isMusicReady, setIsMusicReady] = useState(false);
   const controls = useAnimation();
-  const musicRef = useRef<any>(null); 
+  const musicRef = useRef<{ playMusic: () => void }>(null);
   const router = useRouter();
 
   const topToBottom = {
@@ -49,8 +49,12 @@ const GuestInvitation: React.FC = () => {
   }, [controls, isScrollLocked, router]);
 
   const handleInvitationClick = () => {
+    // Ensure that music is ready before playing
     if (isMusicReady && musicRef.current) {
-      musicRef.current.playMusic();
+      console.log("Music is ready, playing music...");
+      musicRef.current.playMusic(); // Call playMusic from the Music component
+    } else {
+      console.log("Music is not ready yet.");
     }
 
     setIsScrollLocked(false);
@@ -81,7 +85,8 @@ const GuestInvitation: React.FC = () => {
   }, [isScrollLocked]);
 
   const handleMusicReady = () => {
-    setIsMusicReady(true);
+    console.log("Music is ready!");
+    setIsMusicReady(true); // Set the music readiness state to true
   };
 
   return (
@@ -120,7 +125,7 @@ const GuestInvitation: React.FC = () => {
                 <Link
                   href="#bride-initiation"
                   className="flex items-center gap-2 font-poppins bg-[#666666] bg-opacity-80 py-2 px-5 rounded-full shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
-                  onClick={handleInvitationClick}
+                  onClick={handleInvitationClick} // Trigger music play and scroll
                 >
                   <BsEnvelopeOpenHeart />
                   Open Invitation
@@ -130,6 +135,8 @@ const GuestInvitation: React.FC = () => {
           </div>
         </div>
       </OnePage>
+
+      {/* Music component with ref to control the music */}
       <Music ref={musicRef} onReady={handleMusicReady} />
     </>
   );
