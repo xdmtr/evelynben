@@ -14,10 +14,10 @@ const GuestInvitation: React.FC = () => {
   const searchParams = useSearchParams(); 
   const guestName = searchParams.get("to") || "Our Guest"; 
   const [isScrollLocked, setIsScrollLocked] = useState(true); 
-  const [isMusicReady, setIsMusicReady] = useState(false); // Track if music is ready
+  const [isMusicReady, setIsMusicReady] = useState(false);
   const controls = useAnimation();
   const musicRef = useRef<any>(null); 
-  const router = useRouter(); // Use router for navigation
+  const router = useRouter();
 
   const topToBottom = {
     hidden: { opacity: 0, y: -100 },
@@ -30,16 +30,13 @@ const GuestInvitation: React.FC = () => {
   };
 
   useEffect(() => {
-    // Clear hash fragment from URL when component mounts
     if (typeof window !== "undefined" && window.location.hash) {
-      // Remove the hash from the URL without reloading the page
-      const newUrl = window.location.pathname;
-      router.replace(newUrl);
+      const query = window.location.search;
+      router.replace(`${window.location.pathname}${query}`);
     }
 
     controls.start("visible");
 
-    // Lock scrolling when component is mounted
     if (isScrollLocked) {
       document.body.style.overflow = "hidden";
     } else {
@@ -47,30 +44,29 @@ const GuestInvitation: React.FC = () => {
     }
 
     return () => {
-      // Unlock scrolling when component is unmounted
       document.body.style.overflow = "auto";
     };
   }, [controls, isScrollLocked, router]);
 
   const handleInvitationClick = () => {
     if (isMusicReady && musicRef.current) {
-      musicRef.current.playMusic(); // Play music only if player is ready
+      musicRef.current.playMusic();
     }
 
-    // Unlock scrolling when the invitation is clicked
     setIsScrollLocked(false);
 
-    // Smooth scroll to the #bride-initiation section
     const brideInitiation = document.getElementById("bride-initiation");
     if (brideInitiation) {
       window.scrollTo({
         top: brideInitiation.offsetTop,
-        behavior: "smooth", // Smooth scrolling behavior
+        behavior: "smooth",
       });
     }
+
+    const query = window.location.search;
+    router.replace(`${window.location.pathname}${query}`);
   };
 
-  // Detect scroll to top to re-enable scroll lock
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0 && !isScrollLocked) {
@@ -85,7 +81,7 @@ const GuestInvitation: React.FC = () => {
   }, [isScrollLocked]);
 
   const handleMusicReady = () => {
-    setIsMusicReady(true); // Set music ready state to true when music is ready
+    setIsMusicReady(true);
   };
 
   return (
@@ -134,8 +130,6 @@ const GuestInvitation: React.FC = () => {
           </div>
         </div>
       </OnePage>
-
-      {/* Music component */}
       <Music ref={musicRef} onReady={handleMusicReady} />
     </>
   );
