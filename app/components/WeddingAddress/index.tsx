@@ -154,13 +154,10 @@ const WeddingAddress: React.FC = () => {
                 className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
               >
                 <h2 className="font-caramel text-[46px] leading-none">
-                  Wedding Gift
+                Tanda Kasih
                 </h2>
                 <p className=" text-[11px]">
-                  Tanpa Mengurangi rasa hormat,
-                  <br />
-                  Bagi Bapak/Ibu/Saudara/i yang ingin mengirimkan hadiah <br />
-                  pernikahan dapat melalui :
+                  Doa restu yang kami terima sangat berarti, namun jika ingin memberi tanda kasih, tentunya semakin melengkapi kebahagiaan kami
                 </p>
                 <button
                   onClick={toggleDrawer} // Toggle the drawer when clicked
@@ -168,9 +165,6 @@ const WeddingAddress: React.FC = () => {
                 >
                   <FiGift className="text-lg" /> Click Here
                 </button>
-                <p className="font-poppins text-[10px]">
-                  Thank You For Your Gift
-                </p>
               </motion.div>
             </div>
           </div>

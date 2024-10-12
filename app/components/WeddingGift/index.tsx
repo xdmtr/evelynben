@@ -7,11 +7,12 @@ import { RiFileCopyLine } from "react-icons/ri";
 
 const WeddingGift: React.FC = () => {
   const copyText = (text: string) => {
-    navigator.clipboard.writeText(text)
+    navigator.clipboard
+      .writeText(text)
       .then(() => {
         alert("Copied to clipboard!");
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Failed to copy: ", err);
         alert("Failed to copy text");
       });
@@ -22,7 +23,9 @@ const WeddingGift: React.FC = () => {
       <div className="w-full max-w-[540px] flex flex-col items-center text-[11px]">
         <Image src={patangkerapa} alt="patangkerapa" className="w-[68px]" />
         <div className="bg-bg-brown-gradient border border-white w-full flex flex-col items-center text-center text-white font-poppins gap-4 py-5 overflow-y-scroll weddinggift">
-          <h1 className="font-caramel text-[46px] leading-none">Wedding Gift</h1>
+          <h1 className="font-caramel text-[46px] leading-none">
+            Wedding Gift
+          </h1>
           <p className=" text-[11px]">
             Tanpa Mengurangi rasa hormat,
             <br />
@@ -58,7 +61,9 @@ const WeddingGift: React.FC = () => {
             </button>
           </div>
           <div className="w-full flex flex-col items-center gap-1">
-            <h2 className="font-caramel text-[46px] leading-none">Kirim Kado</h2>
+            <h2 className="font-caramel text-[46px] leading-none">
+              Kirim Kado
+            </h2>
             <FiGift className="text-4xl text-center" />
             <h3 className="font-bold">Evelyn & Benhard</h3>
             <p>
@@ -76,6 +81,8 @@ const WeddingGift: React.FC = () => {
             >
               <RiFileCopyLine /> Copy Alamat
             </button>
+
+            <p className="font-poppins text-lg italic mt-3 font-semibold">Thank You For Your Gift!</p>
           </div>
         </div>
       </div>

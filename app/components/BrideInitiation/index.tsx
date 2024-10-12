@@ -8,10 +8,10 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const BrideInitiation: React.FC = () => {
-  const controls = useAnimation(); 
+  const controls = useAnimation();
   const { ref, inView } = useInView({
     threshold: 0.1, 
-    triggerOnce: true, 
+    triggerOnce: true,  // Only trigger the animation once
   });
 
   useEffect(() => {
@@ -25,13 +25,10 @@ const BrideInitiation: React.FC = () => {
     visible: {
       width: "120px",
       opacity: 1,
-      transition: {
-        duration: 5,
-        ease: "easeOut",
-      },
+      transition: { duration: 4, ease: "easeOut" },
     },
   };
-
+  
   return (
     <>
       <OnePage className="" id="bride-initiation">

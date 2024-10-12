@@ -3,10 +3,15 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
+// Define prop types for Music component
+interface MusicProps {
+  onReady: () => void; // onReady function prop
+}
+
 declare global {
   interface Window {
     onYouTubeIframeAPIReady: () => void;
-    YT: typeof YT; 
+    YT: typeof YT;
   }
 
   namespace YT {
@@ -31,7 +36,7 @@ declare global {
   }
 }
 
-const Music = forwardRef((props, ref) => {
+const Music = forwardRef<any, MusicProps>(({ onReady }, ref) => {
   const [isMuted, setIsMuted] = useState(false);
   const [player, setPlayer] = useState<YT.Player | null>(null);
 
@@ -43,24 +48,25 @@ const Music = forwardRef((props, ref) => {
 
     window.onYouTubeIframeAPIReady = () => {
       const newPlayer = new window.YT.Player("music-player", {
-        videoId: "cpYYX3ONPGc",
+        videoId: "cpYYX3ONPGc", // Replace with your video ID
         events: {
           onReady: (event: YT.PlayerEvent) => {
-            event.target.setVolume(50); 
+            event.target.setVolume(50); // Set initial volume
+            onReady(); // Notify that the music is ready to play
           },
         },
         playerVars: {
           autoplay: 0,
           loop: 1,
-          playlist: "cpYYX3ONPGc",
+          playlist: "jtK-xIM-7tU",
           controls: 0,
           showinfo: 0,
-          modestbranding: 1, 
+          modestbranding: 1,
         },
       });
       setPlayer(newPlayer);
     };
-  }, []);
+  }, [onReady]);
 
   useImperativeHandle(ref, () => ({
     playMusic: () => {

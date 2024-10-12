@@ -14,6 +14,7 @@ const GuestInvitation: React.FC = () => {
   const searchParams = useSearchParams(); 
   const guestName = searchParams.get("to") || "Our Guest"; 
   const [isScrollLocked, setIsScrollLocked] = useState(true); 
+  const [isMusicReady, setIsMusicReady] = useState(false); // Track if music is ready
 
   const controls = useAnimation();
   const musicRef = useRef<any>(null); 
@@ -45,9 +46,10 @@ const GuestInvitation: React.FC = () => {
   }, [controls, isScrollLocked]);
 
   const handleInvitationClick = () => {
-    if (musicRef.current) {
-      musicRef.current.playMusic(); 
+    if (isMusicReady && musicRef.current) {
+      musicRef.current.playMusic(); // Play music only if player is ready
     }
+
     // Unlock scrolling when the invitation is clicked
     setIsScrollLocked(false);
 
@@ -74,6 +76,10 @@ const GuestInvitation: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isScrollLocked]);
+
+  const handleMusicReady = () => {
+    setIsMusicReady(true); // Set music ready state to true when music is ready
+  };
 
   return (
     <>
@@ -116,14 +122,14 @@ const GuestInvitation: React.FC = () => {
                   <BsEnvelopeOpenHeart />
                   Open Invitation
                 </Link>
-                <p className="font-cinzel text-sm text-gray-200">(double click)</p>
               </div>
             </motion.div>
           </div>
         </div>
       </OnePage>
 
-      <Music ref={musicRef} />
+      {/* Music component */}
+      <Music ref={musicRef} onReady={handleMusicReady} />
     </>
   );
 };
