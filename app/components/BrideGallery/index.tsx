@@ -93,7 +93,7 @@ const BrideGallery: React.FC = () => {
             clickable: true,
           }}
           modules={[Autoplay, Pagination]}
-          className="z-50 mySwiper w-full overflow-hidden !p-2 max-w-[540px]"
+          className="bride-gallery mySwiper w-full overflow-hidden !p-2 max-w-[540px]"
         >
           {galleryP3.map((item, index) => (
             <SwiperSlide key={index}>
@@ -102,7 +102,7 @@ const BrideGallery: React.FC = () => {
                 alt="background carousel"
                 width={160}
                 height={109}
-                className="max-h-[109px] overflow-hidden object-cover object-center md:object-[center_30%] border-2 border-white rounded-lg cursor-pointer z-40"
+                className="min-h-[109px] max-h-[109px] overflow-hidden object-cover object-center md:object-[center_30%] border-2 border-white rounded-lg cursor-pointer z-40"
                 onClick={() =>
                   handleImageClick(typeof item === "string" ? item : item.src)
                 }

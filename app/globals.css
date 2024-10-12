@@ -12,7 +12,7 @@ html{
     scrollbar-width: thin;
 }
 
-.swiper{
+.swiper.bride-gallery{
     z-index: 50!important;
 }
 
