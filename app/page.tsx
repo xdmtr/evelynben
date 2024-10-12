@@ -17,10 +17,14 @@ import dynamic from 'next/dynamic';
 const GuestInvitation = dynamic(() => import('./components/GuestInvitation'), {
   loading: () => (
     <div className="w-full h-screen bg-browny flex flex-col items-center text-center gap-5 pt-20">
-      <Image 
+       <Image
         src={logo}
         alt="logo"
-        className="animate-bounce duration-700 w-[50px] h-[50px]"
+        width={500} 
+        height={500} 
+        className="animate-bounce duration-700 w-[50px] h-[50px]" 
+        loading="lazy" 
+        decoding="async"
       />
     </div>
   ),
@@ -39,10 +43,8 @@ export default function Home() {
           <BackgroundCarousel overlay="bg-black opacity-10" />
         </div>
         
-        {/* Dynamically loaded components with custom loading indicators */}
         <GuestInvitation />
         
-        {/* Static Components */}
         <BrideInitiation />
         <WeddingDate />
         <BrideGallery />
@@ -62,7 +64,6 @@ export default function Home() {
         <PemberkatanAddress />
         <WeddingAddress />
         
-        {/* Another dynamically loaded component */}
         <GuestConfirmationMessage />
       </div>
     </>
