@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation"; 
+import { useSearchParams, useRouter } from "next/navigation";
 import OnePage from "@/components/OnePage";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,25 +8,32 @@ import { BsEnvelopeOpenHeart } from "react-icons/bs";
 import picture2 from "@/public/bg-carousel/2.webp";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import Music from "@/components/Music"; 
+import Music from "@/components/Music";
 
 const GuestInvitation: React.FC = () => {
-  const searchParams = useSearchParams(); 
-  const guestName = searchParams.get("to") || "Our Guest"; 
-  const [isScrollLocked, setIsScrollLocked] = useState(true); 
-  const [isMusicReady, setIsMusicReady] = useState(false);
+  const searchParams = useSearchParams();
+  const guestName = searchParams.get("to") || "Our Guest";
+  const [isScrollLocked, setIsScrollLocked] = useState(true);
   const controls = useAnimation();
-  const musicRef = useRef<{ playMusic: () => void }>(null);
+  const musicRef = useRef<HTMLAudioElement | null>(null);
   const router = useRouter();
 
   const topToBottom = {
     hidden: { opacity: 0, y: -100 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.5, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1.5, ease: "easeOut" },
+    },
   };
 
   const bottomToTop = {
     hidden: { opacity: 0, y: 100 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1.2, ease: "easeOut" },
+    },
   };
 
   useEffect(() => {
@@ -50,25 +57,11 @@ const GuestInvitation: React.FC = () => {
 
   const handleInvitationClick = () => {
     // Ensure that music is ready before playing
-    if (isMusicReady && musicRef.current) {
-      console.log("Music is ready, playing music...");
-      musicRef.current.playMusic(); // Call playMusic from the Music component
-    } else {
-      console.log("Music is not ready yet.");
+    if (musicRef.current) {
+      musicRef.current.play();
+      setIsScrollLocked(false);
+      router.push("#bride-initiation");
     }
-
-    setIsScrollLocked(false);
-
-    const brideInitiation = document.getElementById("bride-initiation");
-    if (brideInitiation) {
-      window.scrollTo({
-        top: brideInitiation.offsetTop,
-        behavior: "smooth",
-      });
-    }
-
-    const query = window.location.search;
-    router.replace(`${window.location.pathname}${query}`);
   };
 
   useEffect(() => {
@@ -83,11 +76,6 @@ const GuestInvitation: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isScrollLocked]);
-
-  const handleMusicReady = () => {
-    console.log("Music is ready!");
-    setIsMusicReady(true); // Set the music readiness state to true
-  };
 
   return (
     <>
@@ -135,7 +123,7 @@ const GuestInvitation: React.FC = () => {
           </div>
         </div>
       </OnePage>
-      <Music ref={musicRef} onReady={handleMusicReady} />
+      <Music ref={musicRef} />
     </>
   );
 };
