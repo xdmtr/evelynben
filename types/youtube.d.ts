@@ -1,7 +1,7 @@
 declare global {
   interface Window {
     onYouTubeIframeAPIReady: () => void;
-    YT: typeof YT; // Use 'typeof YT' here to avoid duplication errors.
+    YT: typeof YT; 
   }
 
   namespace YT {
@@ -34,6 +34,4 @@ declare global {
     }
   }
 }
-
-// This export statement is required to make this a module and prevent global declarations.
 export {};
