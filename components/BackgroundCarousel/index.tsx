@@ -9,17 +9,20 @@ import { EffectFade, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { backgroundCarouselData } from "@/data/data";
 
-interface overlayProps{
-    overlay?: string;
+interface overlayProps {
+  overlay?: string;
 }
 
-const BackgroundCarousel: React.FC<overlayProps> = ({overlay}) => {
+const BackgroundCarousel: React.FC<overlayProps> = ({ overlay }) => {
   return (
     <>
-      <div className={` z-10 absolute h-screen w-screen flex justify-center ${overlay}`}></div>
+      <div
+        className={` z-10 absolute h-screen w-screen flex justify-center ${overlay}`}
+      ></div>
       <Swiper
         effect={"fade"}
         centeredSlides={true}
+        loop={true}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
@@ -32,7 +35,7 @@ const BackgroundCarousel: React.FC<overlayProps> = ({overlay}) => {
             <Image
               src={item}
               alt="background carousel"
-              className=" h-screen object-cover object-center md:object-[center_30%] "
+              className=" h-screen object-cover object-center md:object-[center_30%]"
             />
           </SwiperSlide>
         ))}

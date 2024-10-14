@@ -4,18 +4,16 @@ import bca from "@/public/bca.png";
 import mandiri from "@/public/mandiri.png";
 import { FiGift } from "react-icons/fi";
 import { RiFileCopyLine } from "react-icons/ri";
+import copy from "copy-to-clipboard";
 
 const WeddingGift: React.FC = () => {
-  const copyText = (text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        alert("Copied to clipboard!");
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-        alert("Failed to copy text");
-      });
+  const copyText = async (text: string, type: string) => {
+    if ("clipboard" in navigator) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      copy(text);
+    }
+    alert(`${type} tersalin`);
   };
 
   return (
@@ -40,7 +38,7 @@ const WeddingGift: React.FC = () => {
               a.n Evelyn Tumbo
             </p>
             <button
-              onClick={() => copyText("5211098598")}
+              onClick={async () => copyText("5211098598", "Nomor rekening BCA")}
               className="p-1 border border-white rounded-full flex items-center gap-1 shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
             >
               <RiFileCopyLine /> Copy Nomor Rekening
@@ -54,7 +52,9 @@ const WeddingGift: React.FC = () => {
               a.n Benhard Sampeupa
             </p>
             <button
-              onClick={() => copyText("1240010363886")}
+              onClick={async () =>
+                copyText("1240010363886", "Nomor rekening MANDIRI")
+              }
               className="p-1 border border-white rounded-full flex items-center gap-1 shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
             >
               <RiFileCopyLine /> Copy Nomor Rekening
@@ -72,9 +72,10 @@ const WeddingGift: React.FC = () => {
               Kel.bahagia, kec.babelan. Bekasi utara
             </p>
             <button
-              onClick={() =>
+              onClick={async () =>
                 copyText(
-                  "Pondok ungu permai sektor 5 blok O 21 no 2, RT.008/RW.027, Kel.bahagia, kec.babelan. Bekasi utara"
+                  "Pondok ungu permai sektor 5 blok O 21 no 2, RT.008/RW.027, Kel.bahagia, kec.babelan. Bekasi utara",
+                  "Alamat"
                 )
               }
               className="p-1 border border-white rounded-full flex items-center gap-1 shadow-xl shadow-transparent hover:scale-105 hover:shadow-[#e58fac79] transition-all duration-500"
@@ -82,7 +83,9 @@ const WeddingGift: React.FC = () => {
               <RiFileCopyLine /> Copy Alamat
             </button>
 
-            <p className="font-poppins text-lg italic mt-3 font-semibold">Thank You For Your Gift!</p>
+            <p className="font-poppins text-lg italic mt-3 font-semibold">
+              Thank You For Your Gift!
+            </p>
           </div>
         </div>
       </div>

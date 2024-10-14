@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import OnePage from "@/components/OnePage";
 import Image from "next/image";
 import toraja from "@/public/patangkerapa_toraja.webp";
-import logo from "@/public/logo.png";
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -23,7 +22,7 @@ const GuestConfirmationMessage: React.FC = () => {
   const [guestMessage, setGuestMessage] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [shouldRefetch, setShouldRefetch] = useState(false);
-  const [hasSubmittedOnce, setHasSubmittedOnce] = useState(false); 
+  const [hasSubmittedOnce, setHasSubmittedOnce] = useState(false);
 
   const [postErrorMessage, setPostErrorMessage] = useState<string | null>(null);
   const [postSuccessMessage, setPostSuccessMessage] = useState<string | null>(
@@ -60,7 +59,7 @@ const GuestConfirmationMessage: React.FC = () => {
 
         if (!hasSubmittedOnce) {
           setHasSubmittedOnce(true);
-          setShouldRefetch(true); 
+          setShouldRefetch(true);
         }
 
         // Clear form inputs after successful submission
@@ -80,7 +79,9 @@ const GuestConfirmationMessage: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!guestName || !guestMessage || !confirmation) {
-      setPostErrorMessage("Nama, ucapan, dan konfirmasi kehadiran wajib diisi.");
+      setPostErrorMessage(
+        "Nama, ucapan, dan konfirmasi kehadiran wajib diisi."
+      );
       return;
     }
 
@@ -268,7 +269,9 @@ const GuestConfirmationMessage: React.FC = () => {
                           className="py-3 border-b border-white last:border-transparent flex gap-2"
                         >
                           <div className="bg-white text-darkBrowny border border-darkBrowny p-2 h-[30px] w-[30px] rounded-full font-bold relative flex items-center justify-center">
-                            <p className="absolute ">{getInitials(guest.Name)}</p>
+                            <p className="absolute ">
+                              {getInitials(guest.Name)}
+                            </p>
                           </div>
                           <div>
                             <strong className="pb-2 text-sm">
@@ -296,18 +299,8 @@ const GuestConfirmationMessage: React.FC = () => {
               <p>
                 With love, <br /> Evelyn & Benhard
               </p>
-               <p className="font-Italianno text-2xl">
+              <p className="font-Italianno text-2xl">
                 Crafting memories, design your dream
-              </p>
-            </div>
-            <div className="bg-gradient-to-b from-[#8E8077] to-[#A69A92] w-full h-auto flex items-center justify-center rounded-t-xl gap-2 py-1 self-end text-white z-20">
-              <Image
-                src={logo}
-                alt="Image of toraja couple"
-                className="w-[30px]"
-              />
-              <p className="font-poppins text-xs font-semibold">
-                2024 &copy; Deili Invitation, All right reserved.
               </p>
             </div>
           </div>

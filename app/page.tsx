@@ -12,28 +12,32 @@ import BackgroundCarousel from "@/components/BackgroundCarousel";
 import ImageSeparator from "@/components/Separator/ImageSeparator";
 import ImageSeparatorBrown from "@/components/Separator/ImageSeparatorBrown";
 import Image from "next/image";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
+import Footer from "../components/Footer";
 
-const GuestInvitation = dynamic(() => import('./components/GuestInvitation'), {
+const GuestInvitation = dynamic(() => import("./components/GuestInvitation"), {
   loading: () => (
     <div className="w-full h-screen bg-browny flex flex-col items-center text-center gap-5 pt-20">
-       <Image
+      <Image
         src={logo}
         alt="logo"
-        width={500} 
-        height={500} 
-        className="animate-bounce duration-700 w-[50px] h-[50px]" 
-        loading="lazy" 
+        width={500}
+        height={500}
+        className="animate-bounce duration-700 w-[50px] h-[50px]"
+        loading="lazy"
         decoding="async"
       />
     </div>
   ),
-  ssr: false, 
+  ssr: false,
 });
 
-const GuestConfirmationMessage = dynamic(() => import('./components/GuestConfirmMessage'), {
-  loading: () => <div>Loading Confirmation...</div>,
-});
+const GuestConfirmationMessage = dynamic(
+  () => import("./components/GuestConfirmMessage"),
+  {
+    loading: () => <div>Loading Confirmation...</div>,
+  }
+);
 
 export default function Home() {
   return (
@@ -42,29 +46,31 @@ export default function Home() {
         <div className="w-full flex flex-col items-center fixed">
           <BackgroundCarousel overlay="bg-black opacity-10" />
         </div>
-        
+
         <GuestInvitation />
-        
+
         <BrideInitiation />
         <WeddingDate />
         <BrideGallery />
-        
+
         <div className="w-full flex flex-col items-center m-0">
           <ImageSeparator />
         </div>
-        
+
         <TheBride />
         <TheGroom />
-        
+
         <div className="w-full flex flex-col items-center m-0">
           <ImageSeparatorBrown />
         </div>
-        
+
         <LoveStory />
         <PemberkatanAddress />
         <WeddingAddress />
-        
+
         <GuestConfirmationMessage />
+
+        <Footer />
       </div>
     </>
   );
