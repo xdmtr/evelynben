@@ -18,10 +18,18 @@ const WeddingAddress: React.FC = () => {
   };
 
   const controls = useAnimation();
-  const { ref: resepsiRef, inView: resepsiInView } = useInView({ triggerOnce: true });
-  const { ref: bibleVerseRef, inView: bibleVerseInView } = useInView({ triggerOnce: true });
-  const { ref: liveStreamingRef, inView: liveStreamingInView } = useInView({ triggerOnce: true });
-  const { ref: weddingGiftRef, inView: weddingGiftInView } = useInView({ triggerOnce: true });
+  const { ref: resepsiRef, inView: resepsiInView } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: bibleVerseRef, inView: bibleVerseInView } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: liveStreamingRef, inView: liveStreamingInView } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: weddingGiftRef, inView: weddingGiftInView } = useInView({
+    triggerOnce: true,
+  });
 
   useEffect(() => {
     if (resepsiInView) controls.start("visible");
@@ -71,7 +79,7 @@ const WeddingAddress: React.FC = () => {
               ref={resepsiRef}
               initial="hidden"
               animate={resepsiInView ? "visible" : "hidden"}
-              variants={slideUpVariants} 
+              variants={slideUpVariants}
               className="w-full bg-gradient-to-b from-[#8E8077] to-[#A69A92] bg-opacity-90 border-2 border-white flex flex-col items-center text-right"
             >
               <div className="w-full max-w-[540px] leading-none px-5 pb-5 flex flex-col items-end gap-3 font-poppins">
@@ -119,7 +127,7 @@ const WeddingAddress: React.FC = () => {
                 ref={liveStreamingRef}
                 initial="hidden"
                 animate={liveStreamingInView ? "visible" : "hidden"}
-                variants={slideUpVariants} 
+                variants={slideUpVariants}
                 className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
               >
                 <h2 className="font-caramel text-[46px] leading-none">
@@ -141,14 +149,16 @@ const WeddingAddress: React.FC = () => {
                 ref={weddingGiftRef}
                 initial="hidden"
                 animate={weddingGiftInView ? "visible" : "hidden"}
-                variants={slideUpVariants} 
+                variants={slideUpVariants}
                 className="bg-bg-brown-gradient border-2 border-white flex flex-col gap-2 text-center pb-5 px-2 w-full font-poppins"
               >
                 <h2 className="font-caramel text-[46px] leading-none">
-                Tanda Kasih
+                  Wedding Gift
                 </h2>
                 <p className=" text-[11px]">
-                  Doa restu yang kami terima sangat berarti, namun jika ingin memberi tanda kasih, tentunya semakin melengkapi kebahagiaan kami
+                  Doa restu yang kami terima sangat berarti, namun jika ingin
+                  memberi tanda kasih, tentunya semakin melengkapi kebahagiaan
+                  kami
                 </p>
                 <button
                   onClick={toggleDrawer}
