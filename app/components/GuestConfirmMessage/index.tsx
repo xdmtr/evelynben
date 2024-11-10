@@ -258,18 +258,19 @@ const GuestConfirmationMessage: React.FC = () => {
                       const getInitials = (name: string) => {
                         const nameParts = name.split(" ");
                         const initials = nameParts
+                          .slice(0, 2)
                           .map((part) => part.charAt(0).toUpperCase())
                           .join("");
                         return initials;
-                      };
+                      };                      
 
                       return (
                         <li
                           key={index}
-                          className="py-3 border-b border-white last:border-transparent flex gap-2"
+                          className="py-3 border-b border-white last:border-transparent flex gap-2 w-full"
                         >
-                          <div className="bg-white text-darkBrowny border border-darkBrowny p-2 h-[30px] w-[30px] rounded-full font-bold relative flex items-center justify-center">
-                            <p className="absolute ">
+                          <div className="bg-white text-darkBrowny border border-darkBrowny !p-2 min-w-10 min-h-10 max-w-10 max-h-10 rounded-full font-bold relative flex items-center justify-center">
+                            <p className=" ">
                               {getInitials(guest.Name)}
                             </p>
                           </div>

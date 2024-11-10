@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {Italianno, Cinzel, Poppins, Bodoni_Moda, EB_Garamond, Caramel, Questrial, Playfair_Display} from "next/font/google";
+import {Italianno, Cinzel, Poppins, EB_Garamond, Caramel, Questrial, Playfair_Display} from "next/font/google";
 
 const italianno = Italianno({
   subsets: ["latin"],
@@ -20,13 +20,6 @@ const poppins = Poppins({
   weight: [ "400","500","600","700","800" ],
   display: "swap"
 })
-
-const bodoni_moda = Bodoni_Moda({
-  subsets: ["latin"],
-  variable: "--font-bodoni-mod",
-  weight: ["400", "500", "600", "700", "800"], 
-  display: "swap",
-});
 
 const eb_garamond = EB_Garamond({
   subsets: ["latin"],
@@ -66,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${caramel.variable} ${cinzel.variable} ${italianno.variable} ${bodoni_moda.variable} ${eb_garamond.variable} ${questrial.variable} ${playfair.variable} antialiased`}
+        className={`${poppins.variable} ${caramel.variable} ${cinzel.variable} ${italianno.variable} ${eb_garamond.variable} ${questrial.variable} ${playfair.variable} antialiased`}
       >
         {children}
       </body>
